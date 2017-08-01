@@ -32,6 +32,11 @@
 		A493794A1F051CEB00103213 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A493792F1F0512D100103213 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A493794F1F05240900103213 /* MWTimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A493794E1F05240900103213 /* MWTimeLineViewController.swift */; };
 		A49379511F05245C00103213 /* GiphyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49379501F05245C00103213 /* GiphyAPI.swift */; };
+		A4D3A79D1F2F025700BDDC0E /* IGListKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D3A79C1F2F025700BDDC0E /* IGListKit.framework */; };
+		A4D3A7A61F2F065800BDDC0E /* TimeLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3A7A51F2F065800BDDC0E /* TimeLineCell.swift */; };
+		A4D3A7A71F2F098800BDDC0E /* IGListKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D3A79C1F2F025700BDDC0E /* IGListKit.framework */; };
+		A4D3A7A81F2F098800BDDC0E /* IGListKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4D3A79C1F2F025700BDDC0E /* IGListKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4D3A7AE1F2F360D00BDDC0E /* MWTimeLineSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D3A7A21F2F064100BDDC0E /* MWTimeLineSectionController.swift */; };
 		A4DE13B01F06554500E6E2F6 /* Chameleon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4DE13AA1F06554500E6E2F6 /* Chameleon.framework */; };
 		A4DE13B11F06554500E6E2F6 /* Hero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4DE13AB1F06554500E6E2F6 /* Hero.framework */; };
 		A4DE13B21F06554500E6E2F6 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4DE13AC1F06554500E6E2F6 /* Kingfisher.framework */; };
@@ -71,6 +76,7 @@
 				A493793E1F051CEB00103213 /* Moya.framework in Embed Frameworks */,
 				A49379421F051CEB00103213 /* ReactiveSwift.framework in Embed Frameworks */,
 				A4DE13BD1F06555100E6E2F6 /* ObjectMapper.framework in Embed Frameworks */,
+				A4D3A7A81F2F098800BDDC0E /* IGListKit.framework in Embed Frameworks */,
 				A4DE13BF1F06555100E6E2F6 /* PromiseKit.framework in Embed Frameworks */,
 				A49379481F051CEB00103213 /* RxMoya.framework in Embed Frameworks */,
 				A4DE13C11F06555100E6E2F6 /* SnapKit.framework in Embed Frameworks */,
@@ -103,6 +109,9 @@
 		A493792F1F0512D100103213 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxSwift.framework; sourceTree = "<group>"; };
 		A493794E1F05240900103213 /* MWTimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWTimeLineViewController.swift; sourceTree = "<group>"; };
 		A49379501F05245C00103213 /* GiphyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiphyAPI.swift; sourceTree = "<group>"; };
+		A4D3A79C1F2F025700BDDC0E /* IGListKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IGListKit.framework; sourceTree = "<group>"; };
+		A4D3A7A21F2F064100BDDC0E /* MWTimeLineSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWTimeLineSectionController.swift; sourceTree = "<group>"; };
+		A4D3A7A51F2F065800BDDC0E /* TimeLineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineCell.swift; sourceTree = "<group>"; };
 		A4DE13AA1F06554500E6E2F6 /* Chameleon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chameleon.framework; sourceTree = "<group>"; };
 		A4DE13AB1F06554500E6E2F6 /* Hero.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hero.framework; sourceTree = "<group>"; };
 		A4DE13AC1F06554500E6E2F6 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = "<group>"; };
@@ -121,6 +130,8 @@
 				A49379361F0512D200103213 /* RxBlocking.framework in Frameworks */,
 				A49379491F051CEB00103213 /* RxSwift.framework in Frameworks */,
 				A4DE13B11F06554500E6E2F6 /* Hero.framework in Frameworks */,
+				A4D3A79D1F2F025700BDDC0E /* IGListKit.framework in Frameworks */,
+				A4D3A7A71F2F098800BDDC0E /* IGListKit.framework in Frameworks */,
 				A4DE13C01F06555100E6E2F6 /* SnapKit.framework in Frameworks */,
 				A49379301F0512D100103213 /* Alamofire.framework in Frameworks */,
 				A4DE13BA1F06555100E6E2F6 /* Kingfisher.framework in Frameworks */,
@@ -221,6 +232,8 @@
 		A49379221F05073D00103213 /* TimeLine */ = {
 			isa = PBXGroup;
 			children = (
+				A4D3A7A11F2F064100BDDC0E /* SectionController */,
+				A4D3A7A31F2F064100BDDC0E /* View */,
 				A4DE14931F0934DF00E6E2F6 /* Model */,
 				A493794C1F05240900103213 /* API */,
 				A493794D1F05240900103213 /* ViewController */,
@@ -231,6 +244,7 @@
 		A49379261F0512D100103213 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				A4D3A79C1F2F025700BDDC0E /* IGListKit.framework */,
 				A4DE149A1F0949DE00E6E2F6 /* SwiftyJSON.framework */,
 				A4DE13AA1F06554500E6E2F6 /* Chameleon.framework */,
 				A4DE13AB1F06554500E6E2F6 /* Hero.framework */,
@@ -265,6 +279,22 @@
 				A493794E1F05240900103213 /* MWTimeLineViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A4D3A7A11F2F064100BDDC0E /* SectionController */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3A7A21F2F064100BDDC0E /* MWTimeLineSectionController.swift */,
+			);
+			path = SectionController;
+			sourceTree = "<group>";
+		};
+		A4D3A7A31F2F064100BDDC0E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A4D3A7A51F2F065800BDDC0E /* TimeLineCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A4DE14931F0934DF00E6E2F6 /* Model */ = {
@@ -359,6 +389,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4DE14951F09352000E6E2F6 /* TimeLineInfo.swift in Sources */,
+				A4D3A7A61F2F065800BDDC0E /* TimeLineCell.swift in Sources */,
+				A4D3A7AE1F2F360D00BDDC0E /* MWTimeLineSectionController.swift in Sources */,
 				A49379181F0506C100103213 /* AppDelegate.swift in Sources */,
 				A493794F1F05240900103213 /* MWTimeLineViewController.swift in Sources */,
 				A49379511F05245C00103213 /* GiphyAPI.swift in Sources */,
