@@ -9,3 +9,4 @@ github "mxcl/PromiseKit" ~> 4.0
 github "SwiftyJSON/SwiftyJSON"
 github "Instagram/IGListKit" ~> 3.0
 github "bahlo/SwiftGif" ~> 1.6.1
+github "CoderMJLee/MJRefresh"

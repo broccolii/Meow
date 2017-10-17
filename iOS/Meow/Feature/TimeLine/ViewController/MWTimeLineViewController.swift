@@ -9,13 +9,15 @@
 import UIKit
 import RxSwift
 import IGListKit
-
+import MJRefresh
 
 class MWTimeLineViewController: UIViewController {
     
-    var data = [ImageInfo]()
+    private var data = [ImageInfo]()
     
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
+    
+    var pageNum = 0;
     
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self)
@@ -34,6 +36,16 @@ class MWTimeLineViewController: UIViewController {
         view.addSubview(collectionView)
         adapter.collectionView = collectionView
         adapter.dataSource = self
+        
+        collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: { 
+            searchData(for: 0);
+        });
+        
+        collectionView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { 
+            searchData(for: pageNum);
+        });
+        
+        collectionView.mj_header.beginRefreshing()
         
         searchData()
     }
@@ -60,13 +72,15 @@ extension MWTimeLineViewController: ListAdapterDataSource {
 
 // MARK: Data
 extension MWTimeLineViewController {
-    func searchData() {
-        GiphyProvider.request(.search(query:"cat", limit:20, offset:0))
+    func searchData(for index: Int) {
+        let offset = 20 * index
+        GiphyProvider.request(.search(query:"cat", limit:20, offset:offset))
             .mapImageInfoArray(ImageInfo.self)
             .subscribe(
                 onNext: { items in
                     self.data = items
                     self.adapter.performUpdates(animated: true, completion: nil)
+                    self.pageNum += 1;
             }, onError: { error in
                 print(error)
             }, onCompleted: {

@@ -9,16 +9,18 @@
 import Foundation
 import IGListKit
 
-final class MWTimeLineSectionController: ListSectionController {
+final class MWTimeLineSectionController: ListSingleSectionController {
     
     private var model: ImageInfo!
     
-    override init() {
-        super.init()
-        inset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
-        
-        minimumLineSpacing = 20
-    }
+//    override init() {
+//        super.init()
+//        inset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+//        
+//        minimumLineSpacing = 20
+//    }
+    
+  
     
     override func sizeForItem(at index: Int) -> CGSize {
        let aspectRatio = model.width / model.height
