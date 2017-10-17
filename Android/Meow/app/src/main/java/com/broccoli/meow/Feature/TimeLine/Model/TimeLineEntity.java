@@ -25,11 +25,11 @@ public class TimeLineEntity {
     private Double width;
     private Double height;
     @SerializedName("size")
-    private String gifSize;
+    private Double gifSize;
     @SerializedName("mp4")
     private String mp4URL;
     @SerializedName("mp4_size")
-    private String mp4Size;
+    private Double mp4Size;
     @SerializedName("webp")
     private String webpURL;
     @SerializedName("webp_size")
@@ -59,11 +59,11 @@ public class TimeLineEntity {
         this.height = height;
     }
 
-    public String getGifSize() {
+    public Double getGifSize() {
         return gifSize;
     }
 
-    public void setGifSize(String gifSize) {
+    public void setGifSize(Double gifSize) {
         this.gifSize = gifSize;
     }
 
@@ -75,11 +75,11 @@ public class TimeLineEntity {
         this.mp4URL = mp4URL;
     }
 
-    public String getMp4Size() {
+    public Double getMp4Size() {
         return mp4Size;
     }
 
-    public void setMp4Size(String mp4Size) {
+    public void setMp4Size(Double mp4Size) {
         this.mp4Size = mp4Size;
     }
 
