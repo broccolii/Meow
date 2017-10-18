@@ -3,6 +3,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import com.broccoli.meow.Feature.TimeLine.LayoutManager.TimeLineLayoutManager;
 import com.broccoli.meow.Feature.TimeLine.Model.TimeLineEntity;
 import com.broccoli.meow.Feature.TimeLine.Service.TimeLineAPI;
 import com.broccoli.meow.R;
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import java.util.ArrayList;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -26,29 +29,31 @@ public class TimeLineActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
 
     private TimeLineRecyclerViewAdapter mAdapter;
+    private TimeLineLayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Fresco.initialize(this);
+
         setContentView(R.layout.activity_time_line);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mAdapter = new TimeLineRecyclerViewAdapter(new ArrayList<TimeLineEntity>());
+        mLayoutManager = new TimeLineLayoutManager(this);
+        mAdapter = new TimeLineRecyclerViewAdapter(new ArrayList<TimeLineEntity>(), this);
 
         mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
+//        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+        SpacesItemDecoration decoration=new SpacesItemDecoration(20);
+        mRecyclerView.addItemDecoration(decoration);
+
+
+
         searchData();
-    }
-
-    private ArrayList<String> getData() {
-        ArrayList<String> data = new ArrayList<>();
-        String temp = " item";
-        for(int i = 0; i < 200; i++) {
-            data.add(i + temp);
-        }
-
-        return data;
     }
 
     void searchData() {
@@ -62,8 +67,9 @@ public class TimeLineActivity extends AppCompatActivity {
             @Override
             public void onNext(ArrayList<TimeLineEntity> value) {
                 String msg = "onNext: value.size = " + value.size();
-                Log.v("", msg);
+                System.out.println(msg);
 
+                mLayoutManager.setData(value);
                 mAdapter.updateData(value);
             }
 
