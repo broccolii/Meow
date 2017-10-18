@@ -9,7 +9,7 @@
 import Foundation
 import IGListKit
 
-final class MWTimeLineSectionController: ListSingleSectionController {
+final class MWTimeLineSectionController: ListSectionController {
     
     private var model: ImageInfo!
     

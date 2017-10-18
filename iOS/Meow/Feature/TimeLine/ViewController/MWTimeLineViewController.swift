@@ -13,9 +13,9 @@ import MJRefresh
 
 class MWTimeLineViewController: UIViewController {
     
-    private var data = [ImageInfo]()
+    public var data = [ImageInfo]()
     
-    private let disposeBag = DisposeBag()
+    public let disposeBag = DisposeBag()
     
     var pageNum = 0;
     
@@ -38,16 +38,16 @@ class MWTimeLineViewController: UIViewController {
         adapter.dataSource = self
         
         collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: { 
-            searchData(for: 0);
+            self.searchData(for: 0);
         });
         
         collectionView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { 
-            searchData(for: pageNum);
+            self.searchData(for: self.pageNum);
         });
         
         collectionView.mj_header.beginRefreshing()
         
-        searchData()
+       
     }
     
     override func viewDidLayoutSubviews() {
@@ -64,7 +64,7 @@ extension MWTimeLineViewController: ListAdapterDataSource {
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return MWTimeLineSectionController()
+        return MWTimeLineSectionController();
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? { return nil }
@@ -74,19 +74,15 @@ extension MWTimeLineViewController: ListAdapterDataSource {
 extension MWTimeLineViewController {
     func searchData(for index: Int) {
         let offset = 20 * index
-        GiphyProvider.request(.search(query:"cat", limit:20, offset:offset))
-            .mapImageInfoArray(ImageInfo.self)
-            .subscribe(
-                onNext: { items in
-                    self.data = items
-                    self.adapter.performUpdates(animated: true, completion: nil)
-                    self.pageNum += 1;
-            }, onError: { error in
-                print(error)
-            }, onCompleted: {
-                print("complete")
-            }
+        
+        _ = try! GiphyProvider.request(.search(query:"cat", limit:20, offset:offset))
+            .mapImageInfoArray()
+            .subscribe(onSuccess: { (items) in
+                self.data = items
+                self.adapter.performUpdates(animated: true, completion: nil)
+                self.pageNum += 1;
+            }, onError: { (error) in
                 
-            ).addDisposableTo(disposeBag)
+            }).addDisposableTo(disposeBag)
     }
 }

@@ -1,10 +1,13 @@
 package com.broccoli.meow.Feature.TimeLine.Service;
+
 import com.broccoli.meow.Feature.TimeLine.Model.TimeLineEntity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -38,7 +41,8 @@ public class TimeLineAPI {
 
     public static void search(Observer<ArrayList<TimeLineEntity>> observer, String query, int limit, int offset) {
 
-        Type type = new TypeToken<ArrayList<TimeLineEntity>>(){}.getType();
+        Type type = new TypeToken<ArrayList<TimeLineEntity>>() {
+        }.getType();
         Gson gson = new GsonBuilder().registerTypeAdapter(type, new TimeLineGsonAdapter()).create();
 
         Retrofit retrofit = new Retrofit.Builder()

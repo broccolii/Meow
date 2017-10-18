@@ -7,4 +7,5 @@ framework module Hero {
 
 module Hero.Swift {
     header "Hero-Swift.h"
+    requires objc
 }

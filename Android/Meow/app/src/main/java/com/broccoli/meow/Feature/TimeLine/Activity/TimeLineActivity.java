@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.broccoli.meow.Feature.TimeLine.Adapter.DividerItemDecoration;
 import com.broccoli.meow.Feature.TimeLine.Adapter.TimeLineRecyclerViewAdapter;
+import com.broccoli.meow.Feature.TimeLine.LayoutManager.TimeLineLayoutManager;
 import com.broccoli.meow.Feature.TimeLine.Model.TimeLineEntity;
 import com.broccoli.meow.Feature.TimeLine.Service.TimeLineAPI;
 import com.broccoli.meow.R;
@@ -33,8 +35,9 @@ public class TimeLineActivity extends AppCompatActivity {
 
         mAdapter = new TimeLineRecyclerViewAdapter(new ArrayList<TimeLineEntity>());
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));//这里用线性显示 类似于listview
         mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         searchData();
     }
 

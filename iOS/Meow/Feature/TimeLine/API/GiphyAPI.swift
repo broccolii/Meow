@@ -20,6 +20,10 @@ public enum Giphy {
 }
 
 extension Giphy: TargetType {
+    public var headers: [String : String]? {
+        return nil
+    }
+    
     public var baseURL: URL {
         return URL(string: "https://api.giphy.com/")!
     }
@@ -57,7 +61,7 @@ extension Giphy: TargetType {
     public var task: Task {
         switch self {
         case .search:
-           return .request
+            return .requestPlain
         }
     }
     
@@ -69,27 +73,28 @@ extension Giphy: TargetType {
     }
 }
 
+extension PrimitiveSequence where TraitType == SingleTrait, ElementType == Response {
+    public func mapImageInfoArray() -> Single<[ImageInfo]> {
+        return flatMap { response -> Single<[ImageInfo]> in
+            let responseDataJSONArray = JSON(data: response.data)["data"]
+            var originalImageJSONArray = [Any?]()
 
-extension Response {
-    public func mapImageInfoArray<T: BaseMappable>(_ type: T.Type) throws -> [T] {
-        let responseDataJSONArray = JSON(data: self.data)["data"]
-        var originalImageJSONArray = [Any?]()
-        
-        for responseDataJSONObject in responseDataJSONArray.array! {
-            originalImageJSONArray.append(responseDataJSONObject["images"]["original"].object)
+            for responseDataJSONObject in responseDataJSONArray.array! {
+                originalImageJSONArray.append(responseDataJSONObject["images"]["original"].object)
+            }
+
+            let objects = try! Mapper<ImageInfo>().mapArray(JSONObject: originalImageJSONArray) ?? [ImageInfo]()
+            
+            return Single.just(objects)
         }
-        
-        guard let objects = Mapper<T>().mapArray(JSONObject: originalImageJSONArray) else {
-                throw MoyaError.jsonMapping(self)
-        }
-        return objects
     }
 }
 
-extension ObservableType where E == Response {
-    public func mapImageInfoArray<T: BaseMappable>(_ type: T.Type) -> Observable<[T]> {
-        return flatMap { response -> Observable<[T]> in
-            return Observable.just(try response.mapImageInfoArray(T.self))
-        }
-    }
-}
+//extension ObservableType where E == Response {
+//    public func mapImageInfoArray<T: BaseMappable>(_ type: T.Type) -> Observable<[T]> {
+//        return flatMap { response -> Observable<[T]> in
+//            return Observable.just(try response.mapImageInfoArray(T.self))
+//        }
+//    }
+//}
+

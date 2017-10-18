@@ -7,4 +7,5 @@ framework module RxMoya {
 
 module RxMoya.Swift {
     header "RxMoya-Swift.h"
+    requires objc
 }

@@ -10,7 +10,7 @@ import UIKit
 import ObjectMapper
 import IGListKit
 
-class ImageInfo : NSObject, Mappable {
+public class ImageInfo : NSObject, Mappable {
     var webpURL: String?
     var gifURL: String?
     var mp4URL: String?
@@ -26,12 +26,12 @@ class ImageInfo : NSObject, Mappable {
         return CGSize(width: self.width ?? 0, height: self.height ?? 0)
     }()
     
-    required init?(map: Map) {
+    required public init?(map: Map) {
         
     }
   
     
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         webpURL <- map["webp"]
         gifURL <- map["url"]
         mp4URL <- map["mp4"]
@@ -66,11 +66,11 @@ class ImageInfo : NSObject, Mappable {
 }
 
 extension ImageInfo: ListDiffable {
-    func diffIdentifier() -> NSObjectProtocol {
+    public func diffIdentifier() -> NSObjectProtocol {
         return self
     }
     
-    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
+    public func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
         return isEqual(object)
     }
 }
